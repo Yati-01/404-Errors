@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Warmup - Futuristic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        .topbar {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+        }
+        .tagline {
+            font-size: 1rem;
+            color: #ccc;
+        }
+        .final-score {
+            font-size: 1.5rem;
+            color: #fff;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: calc(100% - 60px); /* Adjust height to account for the sticky navbar */
+            overflow: hidden;
+        }
+        main {
+            flex: 1;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar" style="display: flex;">
+        <div class="logo" style="flex: 1;">SimPortal</div>
+        <div class="final-score" style="flex: 3; text-align: center;">Final Score: <span id="finalScoreValue">0</span></div>
+        <div class="tagline" style="">Your Gateway to Success</div>
+    </div>
+    <div class="container">
+        <header>
+            <a href="{{ url_for('index') }}" class="back-link">⬅ Go Back</a>
+        </header>
+
+        <main>
+            <!-- Question Box -->
+            <div class="question-box fade-in">
+                <div class="question-info">
+                    <!-- <span class="question-type">ⓘ Background question</span>
+                    <span class="question-number" id="questionNumber">1/5</span> -->
+                </div>
+                <div class="question-text-container">
+                    <h2 class="question-text" id="questionText">{{ prev_question }}</h2>
+                    <button class="answer-button icon-button" id="textToSpeech">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" stroke="currentColor" class="icon-volume"><path d="M15 6.269a.94.94 0 0 0-1.604-.664L8.55 10.116A1.87 1.87 0 0 1 7.224 11H4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h3.224a1.87 1.87 0 0 1 1.326.884l4.846 4.846A.94.94 0 0 0 15 25.731z"/><path d="M21.333 12a6.667 6.667 0 0 1 0 8"/><path d="M25.818 25.818a12 12 0 0 0 0-17.636"/></svg>
+                    </button>
+
+                </div>
+                <div class="answer-options">
+                    <!-- Voice Typing Button -->
+                    <button class="answer-button" id="startStopVoiceTyping">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" class="icon-mic"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+                    </button>
+                    <!-- Confidence Score Display -->
+                    <div id="confidenceScore" class="confidence-score">Confidence Score: N/A</div>
+                </div>
+                <div class="textarea-container">
+                    <textarea id="transcript" placeholder="Your answer will appear here..." rows="8" style="resize: none;"></textarea>
+                    <div class="submit">
+                        <button class="submit-button" id="submitAnswer">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" class="icon-send">
+                                <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/>
+                                <path d="m21.854 2.147-10.94 10.939"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+            </div>
+
+            <!-- Side Panel -->
+            <div id="sidePanel" class="side-panel" style="overflow: scroll;">
+                <h2 style="color: rgb(238, 203, 49);">Response Details</h2>
+                <div class="side-content">
+                    <p style="color: rgb(241, 120, 64);"><strong>Question:</strong></p>
+                    <p id="panelQuestion">{{ prev_question }}</p>
+
+                    <p style="color: rgb(241, 120, 64);"><strong>Your Response:</strong></p>
+                    <p id="panelUserResponse">User's response will appear here...</p>
+
+                    <p style="color: rgb(241, 120, 64);"><strong>Accuracy Score:</strong></p>
+                    <p id="panelAccuracy">{{ accuracy_score }}</p>
+
+                    <p style="color: rgb(241, 120, 64);"><strong>Correct Answer:</strong></p>
+                    <p id="panelCorrectAnswer">The ideal candidate will be looking for opportunities to grow and improve their skills...</p>
+
+                    <h3 style="color: rgb(54, 230, 122);">Evaluation of Interviewee's Answer:</h3>
+                    <p style="color: rgb(241, 120, 64);"><strong>Compliments:</strong></p>
+                    <p id="panelCompliments">None.</p>
+
+                    <p style="color: rgb(241, 120, 64);"><strong>Suggestions for Improvement:</strong></p>
+                    <ul id="panelSuggestions"></ul>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typewriter-effect@2.18.0/dist/core.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/recorderjs/0.1.0/recorder.js"></script>
+    <script>
+    // Typewriter effect for logo
+    var app = document.querySelector('.logo');
+    var typewriter = new Typewriter(app, {
+        loop: true,
+        delay: 75,
+    });
+
+    typewriter
+        .typeString('SimPortal')
+        .pauseFor(2000)
+        .deleteAll()
+        .start();
+
+    // Handle final score display
+    function displayFinalScore(score) {
+        const finalScoreValue = document.getElementById('finalScoreValue');
+        finalScoreValue.innerText = score;
+    }
+    </script>
+</body>
+</html>
