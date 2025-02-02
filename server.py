@@ -144,15 +144,21 @@ def upload_audio():
 @app.route('/generate_gemini_response', methods=['POST'])
 def generate_gemini_response():
     data = request.json
-    user_input = data.get('user_input', '')
+    user_input = data.get('user_input', '').strip().lower()
     topic = data.get('topic', chosen_topic)
+
+    # Check if the user wants to end the discussion
+    if user_input == "end":
+        context = f"The group discussion on the topic: {topic} has ended. Please provide a constructive and analytical feedback on the user's participation. Highlight strengths and areas of improvement in a balanced manner. Keep it concise and professional."
+        response = get_gemini_response(user_input, context)
+        return jsonify({"response": response})
 
     # Check if the user's input is on topic
     if not is_on_topic(user_input, topic):
         return jsonify({"response": "Your response seems to be off-topic. Please stick to the topic."})
 
-    # Set the context for the discussion
-    context = f"A group discussion is being held on the topic: {topic}. The user will speak first. You are supposed to argue with the user. Reply in 50 to 100 words only."
+    # Set the context for argument-based discussion
+    context = f"A group discussion is being held on the topic: {topic}. The user will speak first. You are supposed to argue with the user. Reply in 50 to 100 words only.If user writes 'end' then give feedback about users participation."
 
     # Get Gemini's response that includes an argument
     response = get_gemini_response(user_input, context)
