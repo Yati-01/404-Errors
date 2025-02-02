@@ -19,14 +19,15 @@
         .chat-container {
             width: 90%;
             margin-top: 5vh;
-            height: 90vh; /* 90% of the viewport height */
+            height: 85vh; 
             background: rgba(36, 36, 62, 0.8);
             border-radius: 20px;
-            padding: 20px;
+            padding: 30px 30px;
             box-shadow: 0 4px 12px rgba(0, 123, 255, 0.6);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: center;
+            
         }
         .chat-title {
             margin-bottom: 20px;
@@ -86,7 +87,7 @@
             border: 1px solid rgba(255, 255, 255, 0.6);
             box-shadow: inset 0 0 10px rgba(0, 123, 255, 0.6);
             transition: border-color 0.2s ease-in-out;
-            /* background: rgba(15, 15, 40, 0.7); */
+        
             color: #f0f0f0;
         }
         .response-box input:focus {
@@ -118,37 +119,41 @@
         }
         .topbar {
             background: rgba(0, 0, 0, 0.7);
-            padding: 10px 20px;
+            padding: 1em 5em;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky;
             top: 0;
+            height: 10vh;
             z-index: 1000;
             width: 100%;
         }
         .logo {
-            font-size: 1.5rem;
+            font-size: 3rem;
             font-weight: bold;
             color: #fff;
         }
         .tagline {
-            font-size: 1rem;
+            font-size: 2rem;
             color: #ccc;
         }
     </style>
 </head>
 <body style="display: block;">
 
-<div class="topbar">
-    <div class="logo">SimPortal</div>
-    <div class="tagline">Your Gateway to Success</div>
-</div>
+    <div class="topbar">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <img src="/static/logo.png" alt="logo" width="100" height="90">
+            <div class="logo">SkillSphere</div>
+        </div>
+            <div class="tagline">Your Gateway to Succes</div>
+    </div>
 
 <div class="container chat-container" style=" padding-top: 0%; margin-top: 6px;"> 
 
     <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-        <a href="{{ url_for('index') }}" class="back-link" style="margin: 0;">⬅Go Back</a>
+        <a href="{{ url_for('index') }}" class="back-link" style="margin: 0;"> Back </a>
         <div class="chat-title" style="color: yellow; font-size: 36px; padding:0; margin: 0 auto; text-align: center; width: 90%;">Group Discussion Simulation</div>
     </div>
     
@@ -159,7 +164,7 @@
     <div id="chat-box" class="chat-box">
         <!-- Initial Messages (LLM) -->
         <div class="message message-llm">
-            <strong>LLM:</strong> Hi, I'm LLM. Let's discuss!
+            <strong>Host:</strong> Hi, Let's discuss. You first!
         </div>
     </div>
 
@@ -179,7 +184,16 @@
         "Climate change and its effects",
         "The future of artificial intelligence",
         "The importance of mental health awareness",
-        "The role of technology in education"
+        "The role of technology in education" ,
+        "The benefits and drawbacks of remote work",
+        "The influence of pop culture on youth",
+        "The ethics of genetic engineering",
+        "The future of space exploration",
+        "The importance of cybersecurity in the digital age",
+        "Is online education as good as classroom education?",
+        "Can art and music bridge cultures?",
+        "Should animal testing in research be banned?",
+        "Should history books focus more on global views rather than national stories?"
     ];
 
     // Choose a random topic
