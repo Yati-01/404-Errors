@@ -6,9 +6,9 @@
     <title>Home Page</title>
     <style>
         body {
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
             font-family: Arial, sans-serif;
             color: #f0f0f0;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
             margin: 0;
             display: flex;
             flex-direction: column;
@@ -16,18 +16,19 @@
         }
         .topbar {
             background: rgba(0, 0, 0, 0.7);
-            padding: 10px 20px;
+            padding: 1em 5em;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            height: 10vh;
         }
         .logo {
-            font-size: 1.5rem;
+            font-size: 3rem;
             font-weight: bold;
             color: #fff;
         }
         .tagline {
-            font-size: 1rem;
+            font-size: 2rem;
             color: #ccc;
         }
         .hero {
@@ -38,74 +39,231 @@
             align-items: center;
             text-align: center;
             padding: 20px;
+            height: 100vh;
         }
         .hero h1 {
-            font-size: 3rem;
+            font-size: 5rem;
             margin-bottom: 20px;
             color: rgba(0,123,255,0.8);
         }
         .hero p {
-            font-size: 1.5rem;
+            font-size: 2rem;
             margin-bottom: 40px;
             color: #f0f0f0;
         }
         .button-container {
+            max-width: 1500px;
+            height: 50px;
             display: flex;
-            gap: 20px;
+            justify-content: space-between;
+            gap: 50px; 
         }
         .btn {
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background 0.3s ease, transform 0.3s ease;
-            color: #fff;
+            padding: 15px 40px;
+            width: 150px;
+            height: 100%;
+            border: 2px solid  #00d4ff;
+            border-radius: 8px;
+            display: inline-flex;
+            background-color:  #00d4ff;
+            letter-spacing: 1px;
             text-decoration: none;
             text-align: center;
-        }
-        .btn-gd {
-            background: linear-gradient(135deg, rgba(0,123,255,0.8), rgba(255,99,71,0.8));
-        }
-        .btn-gd:hover {
-            background: linear-gradient(135deg, rgba(255,99,71,0.8), rgba(0,123,255,0.8));
-            transform: scale(1.05);
+            color: #161616;
+            font-weight: 600;
+            font-size: 21px;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+            position: relative;
+            overflow: hidden;
+            transition: 0.5s;
+            
         }
         .btn-mock {
-            background: linear-gradient(135deg, rgba(0,168,204,0.8), rgba(0,123,255,0.8));
+            
+            background: transparent;
+            color: #00d4ff;
         }
         .btn-mock:hover {
-            background: linear-gradient(135deg, rgba(0,123,255,0.8), rgba(0,168,204,0.8));
-            transform: scale(1.05);
+            color: rgba(11, 16, 46, 0.733);
         }
+        .btn:hover::before {
+        width: 100%;
+        }
+
+        .btn-gd:hover {
+        color:  #00d4ff;
+        }
+
+        .btn::before{
+        content: '';
+        width: 0;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: absolute;
+        background :rgba(11, 16, 46, 0.733);
+        z-index: -1;
+        transition: .5s;
+        }
+
+        .btn-mock::before {
+        background-color:  #00d4ff;
+        }
+
+         .area{
+            width: 100%;
+            height:50%;
+        }
+
+        .circles{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .circles li{
+            position: absolute;
+            display: block;
+            list-style: none;
+            width: 20px;
+            height: 20px;
+            background: #ffffff33;
+            animation: animate 20s linear infinite;
+            bottom: -150px;
+            
+        }
+
+        .circles li:nth-child(1){
+            left: 25%;
+            width: 70px;
+            height: 70px;
+            animation-delay: 0s;
+        }  
+
+        .circles li:nth-child(2){
+            left: 10%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 1s;
+            animation-duration: 10s;
+        }
+
+        .circles li:nth-child(3){
+            left: 70%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 2s;
+        }
+
+        .circles li:nth-child(4){
+            left: 40%;
+            width: 60px;
+            height: 60px;
+            animation-delay: 0s;
+            animation-duration: 15s;
+        }
+
+        .circles li:nth-child(5){
+            left: 65%;
+            width: 30px;
+            height: 30px;
+            animation-delay: 0s;
+        }
+
+        .circles li:nth-child(6){
+            left: 75%;
+            width: 110px;
+            height: 110px;
+            animation-delay: 2s;
+        }
+
+        .circles li:nth-child(7){
+            left: 10%;
+            width: 100px;
+            height: 100px;
+            animation-delay: 5s;
+        }
+
+        .circles li:nth-child(8){
+            left: 50%;
+            width: 25px;
+            height: 25px;
+            animation-delay: 9s;
+            animation-duration: 40s;
+        }
+
+        .circles li:nth-child(9){
+            left: 20%;
+            width: 15px;
+            height: 15px;
+            animation-delay: 1s;
+            animation-duration: 30s;
+        }
+
+        .circles li:nth-child(10){
+            left: 85%;
+            width: 150px;
+            height: 150px;
+            animation-delay: 0s;
+            animation-duration: 9s;
+        }
+        @keyframes animate {
+
+        0%{
+            transform: translateY(0) rotate(0deg);
+            opacity: 1;
+            border-radius: 0;
+        }
+
+        100%{
+            transform: translateY(-1000px) rotate(720deg);
+            opacity: 0;
+            border-radius: 50%;
+        }
+
+        }
+
+
     </style>
 </head>
 <body>
     <div class="topbar">
-        <div class="logo">SimPortal</div>
-        <div class="tagline">Your Gateway to Success</div>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <img src="/static/logo.png" alt="logo" width="100" height="90">
+            <div class="logo">SkillSphere</div>
+        </div>
+            <div class="tagline">Your Gateway to Succes</div>
     </div>
     <div class="hero">
-        <h1>Welcome to the Simulation Portal</h1>
+        <h1>Welcome to SkillSphere</h1>
         <p>Prepare for your future with our interactive simulations</p>
         <div class="button-container">
             <a href="/gd" class="btn btn-gd">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-graduation-cap">
-                    <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/>
-                    <path d="M22 10v6"/>
-                    <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/>
-                </svg>
                 Group Discussion
             </a>
             <a href="/mock_interview" class="btn btn-mock">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mic-vocal">
-                    <path d="m11 7.601-5.994 8.19a1 1 0 0 0 .1 1.298l.817.818a1 1 0 0 0 1.314.087L15.09 12"/>
-                    <path d="M16.5 21.174C15.5 20.5 14.372 20 13 20c-2.058 0-3.928 2.356-6 2-2.072-.356-2.775-3.369-1.5-4.5"/>
-                    <circle cx="16" cy="7" r="5"/>
-                </svg>
                 Mock Interview
             </a>
         </div>
+    </div>
+    <div class="area">
+        <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
@@ -115,17 +273,6 @@
     gsap.from(".hero h1", { duration: 1, y: -50, opacity: 0, ease: "bounce" });
     gsap.from(".hero p", { duration: 1, y: 50, opacity: 0, delay: 0.5, ease: "power2.out" });
     gsap.from(".btn", { duration: 1, scale: 0, opacity: 0, delay: 0.7, ease: "back.out(1.7)" });
-
-    // Button hover animations
-    document.querySelectorAll('.btn').forEach(button => {
-        button.addEventListener('mouseenter', () => {
-            gsap.to(button, { duration: 0.3, scale: 1.1 });
-        });
-        button.addEventListener('mouseleave', () => {
-            gsap.to(button, { duration: 0.3, scale: 1 });
-        });
-    });
-
     // Typewriter effect for logo
     var app = document.querySelector('.logo');
     var typewriter = new Typewriter(app, {
@@ -134,7 +281,7 @@
     });
 
     typewriter
-        .typeString('SimPortal')
+        .typeString('SkillSphere')
         .pauseFor(2000)
         .deleteAll()
         .start();
