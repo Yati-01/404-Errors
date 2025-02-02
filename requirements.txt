@@ -1,0 +1,7 @@
+Flask
+google-generativeai
+python-dotenv
+requests
+werkzeug
+joblib
+librosa
