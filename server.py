@@ -158,7 +158,7 @@ def generate_gemini_response():
         return jsonify({"response": "Your response seems to be off-topic. Please stick to the topic."})
 
     # Set the context for argument-based discussion
-    context = f"A group discussion is being held on the topic: {topic}. The user will speak first. You are supposed to argue with the user. Reply in 50 to 100 words only.If user writes 'end' then give feedback about users participation."
+    context = f"A group discussion is being held on the topic: {topic}. The user will speak first. You are supposed to argue with the user. Reply in 50 to 100 words only.If user writes end then give feedback about users participation."
 
     # Get Gemini's response that includes an argument
     response = get_gemini_response(user_input, context)
